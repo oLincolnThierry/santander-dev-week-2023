@@ -16,22 +16,22 @@ import numpy as np
 
 PATH_SDW = '/content/SDW2023.csv'
 df = pd.read_csv(PATH_SDW)
-user_ids = df['UserID'].tolist() # Devolve todas as informações
+user_ids = df['UserID'].tolist() 
 print(user_ids)
 
-import requests as rqs # requisição
-import json # formatar saidas/ Manipulação dados de retorno/ visualizar
+import requests as rqs 
+import json 
 
 def get_user(id):
-  response = rqs.get(f'{sdw2023_api_url}/users/{id}') # uso do get e do path /users/ para devolver o id
+  response = rqs.get(f'{sdw2023_api_url}/users/{id}') 
   return response.json() if response.status_code == 200 else None
 
-users = [user for id in user_ids if (user := get_user(id)) is not None] # Compreensão de listas [Percorre cada Id da lista de ids user para cada id ele vai fazer uma chamada na função get User// := (formato de uma expressão - limpeza)]
+users = [user for id in user_ids if (user := get_user(id)) is not None] 
 print(json.dumps(users, indent = 2))
 
 !pip install openai==0.28
 
-openia_api_key = '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'
+openia_api_key = '' # Digite aqui o seu código da api_key.
 
 import openai
 
